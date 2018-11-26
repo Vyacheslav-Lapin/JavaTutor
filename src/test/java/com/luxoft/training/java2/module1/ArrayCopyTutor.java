@@ -3,6 +3,7 @@ package com.luxoft.training.java2.module1;
 import org.junit.Test;
 
 import static com.luxoft.training.Logger.log;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Данный класс делает то же, что делает стандартный ArrayList:
@@ -11,10 +12,9 @@ import static com.luxoft.training.Logger.log;
  * Реализуйте метод deleteAnimal(int position)
  */
 public class ArrayCopyTutor {
-  int animalsCapacity = 5;
-  int animalsExpandBy = 5;
-  int animalsSize = 0;
-  String[] animals = new String[animalsCapacity];
+  private int animalsCapacity = 5;
+  private int animalsSize = 0;
+  private String[] animals = new String[animalsCapacity];
 
   public void addAnimal(String animal) {
     if (animalsSize >= animalsCapacity) {
@@ -26,6 +26,7 @@ public class ArrayCopyTutor {
 
   private void expandAnimalsArray() {
     int old_animals_size = animalsCapacity;
+    int animalsExpandBy = 5;
     animalsCapacity += animalsExpandBy;
     String[] animals_new = new String[animalsCapacity];
     System.arraycopy(animals, 0, animals_new, 0, old_animals_size);
@@ -49,7 +50,13 @@ public class ArrayCopyTutor {
   }
 
   public void deleteAnimal(int position) {
-    // TODO: 2018-11-26 realize!
+    System.arraycopy(animals,
+        position+1,
+        animals,
+        position,
+        animalsSize-position);
+
+    animalsSize--;
   }
 
   public void showAnimals() {
@@ -72,6 +79,10 @@ public class ArrayCopyTutor {
     addAnimal("Кошка");
     addAnimal("Черепаха");
     insertAnimal(1, "Человек");
+
+    assertThat(animals.length % 5).isEqualTo(0);
+    assertThat(animals[1]).isEqualTo("Человек");
+
     //deleteAnimal(2);
     showAnimals();
   }
