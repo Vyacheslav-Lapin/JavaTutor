@@ -1,0 +1,14 @@
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+SEVERE: Major disaster
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+WARNING: Potential problem
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+INFO: Standard output
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+CONFIG: Some config notes
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+FINE: Fine detail
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+FINER: Finer detail
+15.04.2013 21:45:41 com.luxoft.training.java2.module9.LoggerLevelTutor logLevels
+FINEST: Finest detail

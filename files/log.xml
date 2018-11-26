@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541337</millis>
+  <sequence>4</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>SEVERE</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Major disaster</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541338</millis>
+  <sequence>5</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>WARNING</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Potential problem</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541338</millis>
+  <sequence>6</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>INFO</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Standard output</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541339</millis>
+  <sequence>7</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>CONFIG</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Some config notes</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541339</millis>
+  <sequence>8</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>FINE</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Fine detail</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541340</millis>
+  <sequence>9</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>FINER</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Finer detail</message>
+</record>
+<record>
+  <date>2013-04-15T21:45:41</date>
+  <millis>1366051541340</millis>
+  <sequence>10</sequence>
+  <logger>com.luxoft.training.java2.module9.LoggerLevelTutor</logger>
+  <level>FINEST</level>
+  <class>com.luxoft.training.java2.module9.LoggerLevelTutor</class>
+  <method>logLevels</method>
+  <thread>10</thread>
+  <message>Finest detail</message>
+</record>
+</log>
