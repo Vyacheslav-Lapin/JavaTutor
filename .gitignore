@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+/**/target/
+!/.mvn/wrapper/maven-wrapper.properties
+/**/.mvn/
+/pom.xml.versionsBackup
