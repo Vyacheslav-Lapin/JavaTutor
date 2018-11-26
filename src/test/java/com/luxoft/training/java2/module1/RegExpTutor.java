@@ -2,8 +2,6 @@ package com.luxoft.training.java2.module1;
 
 import static org.junit.Assert.*;
 import static com.luxoft.training.Logger.log;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.junit.Test;
 

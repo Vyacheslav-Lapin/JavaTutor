@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.luxoft.training.java2.module1.ObjectMethodsTutor1.Employee;
 import com.luxoft.training.java2.module1.ObjectMethodsTutor1.EmployeeType;
 
 public class ObjectToStringTutor1 {

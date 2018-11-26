@@ -3,10 +3,6 @@ package com.luxoft.training.java2.module1;
 import static org.junit.Assert.*;
 import static com.luxoft.training.Logger.log;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import org.junit.Test;
