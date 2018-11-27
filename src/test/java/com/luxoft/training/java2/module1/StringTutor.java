@@ -7,6 +7,23 @@ import static org.junit.Assert.*;
 
 public class StringTutor {
 
+  @Test
+  public void name() {
+    String s = "Lorem ipsum dolor";
+
+//    for (int i = 0; i < 55; i++) {
+//       s += i;
+//      s = new StringBuffer(s).append(i).toString();
+//    }
+
+    StringBuilder stringBuilder = new StringBuilder(s);
+    for (int i = 0; i < 55; i++) {
+      stringBuilder.append(i);
+    }
+
+    System.out.println("s = " + s);
+  }
+
   /**
    * Замените все null в assertEquals на true или false
    */
