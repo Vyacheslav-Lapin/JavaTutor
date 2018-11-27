@@ -44,7 +44,7 @@ public class StringMatcherTest {
 	  
 	  // Returns true if the string contains a number less then 300
 	  public boolean isLessThenThreeHundred(String s){
-	    return s.matches("[^0-9]*[12]?[0-9]{1,2}[^0-9]*");
+	    return s.matches("[^\\d]*[12]?[\\d]{1,2}[^\\d]*");
 	  }
 
 	  @Test

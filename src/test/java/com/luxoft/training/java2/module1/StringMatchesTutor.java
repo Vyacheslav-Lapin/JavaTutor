@@ -10,9 +10,9 @@ public class StringMatchesTutor  {
 	/**
 	 * Проверяет корректность адреса электронной почты
 	 */
-	public boolean checkIsEmail(String email) {
+	private boolean checkIsEmail(String email) {
 		return email.matches(
-			"^[A-Za-z\\.-0-9]{2,}@[A-Za-z\\.-0-9]{2,}\\.[A-Za-z]{2,3}$");
+			"^[A-Za-z.\\-0-9]{2,}@[A-Za-z.\\-0-9]{2,}\\.[A-Za-z]{2,3}$");
 	}
 	
 	/**
@@ -25,8 +25,8 @@ public class StringMatchesTutor  {
 	 *  причем имя и фамилия не короче 3 букв
 	 *  и начинаются с большой буквы
 	 */
-	public boolean checkGreeting(String greeting) {
-		return false;
+	private boolean checkGreeting(String greeting) {
+	return greeting.matches("^Hello,\\s*\\w{3,}\\s+\\w{3,}!$");
 	}
 	
 	@Test
