@@ -9,7 +9,7 @@ public final class AnonimExample {
       @Override
       public long getTime() {
         long time = super.getTime();
-        return time == 0 ? Long.MAX_VALUE: time;
+        return time == 0 ? Long.MAX_VALUE : time;
       }
 
       String m1() {
@@ -21,7 +21,6 @@ public final class AnonimExample {
 
     System.out.println("date.m1() = " + date.m1()); // "Hello, World!"
 
-//    new Outer().new Inner();
-//    new Outer.Inner();
+
   }
 }
