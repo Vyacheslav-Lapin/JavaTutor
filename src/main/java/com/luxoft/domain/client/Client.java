@@ -1,54 +1,54 @@
 package com.luxoft.domain.client;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import com.luxoft.domain.account.Account;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
+import static lombok.AccessLevel.PRIVATE;
+
+@Builder
+@ToString
+@EqualsAndHashCode(exclude = "accounts")
+@FieldDefaults(level = PRIVATE, makeFinal = true)
 public class Client implements Serializable {
 
-	private String name;
-	private Gender gender;
+	@Getter
+	String name;
+	Gender gender;
 
-	private List<Account> accounts = new ArrayList<Account>();
-
-	public Client(final String name, final Gender gender) {
-		this.name = name;
-		this.gender = gender;
-	}
-
-	public String getName() {
-		return name;
-	}
+	@Singular
+	List<Account> accounts;
 
 	public String getSalutation() {
-		if (gender != null) {
-			return gender.getSalutation() + " " + name;
-		} else {
-			return name;
-		}
+		return gender != null ?
+				gender.getSalutation() + " " + name
+				: name;
 	}
 
-	public Account getAccount(final int id) {
-		for (Account acc : accounts) {
-			if (acc.getAccountNumber() == id) {
-				return acc;
+//	public Optional<Account> getAccount(int id) {
+//		return accounts.stream()
+//				.parallel()
+//				.filter(account -> account.getAccountNumber() == id)
+//				.findAny();
+//	}
+
+	public Optional<Account> getAccount(int id) {
+		for (Account account : accounts) {
+			if (account.getAccountNumber() == id) {
+				return Optional.of(account);
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
 
-	public void addAccount(final Account account) {
+	public void addAccount(Account account) {
 		accounts.add(account);
 	}
-
-	//TODO: implement toString method which outputs infor for this client
 
 	public List<Account> getAccountsList() {
 		return Collections.unmodifiableList(accounts);
 	}
-
-	//TODO: implement hashCode() and equals() methods which will be used in the following examples (collections)
 }

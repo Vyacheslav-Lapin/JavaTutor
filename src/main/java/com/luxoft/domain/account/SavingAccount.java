@@ -1,6 +1,7 @@
 package com.luxoft.domain.account;
 
 import com.luxoft.exceptions.NoEnoughFundsException;
+import lombok.SneakyThrows;
 
 import static com.luxoft.domain.account.AccountType.SAVING;
 
@@ -19,15 +20,15 @@ public class SavingAccount extends AbstractAccount {
 	}
 
 	@Override
-	public void withdraw(final double amount) throws NoEnoughFundsException {
+	@SneakyThrows
+	public void withdraw(double amount) {
 		if (amount < 0) {
 			throw new IllegalArgumentException("Amount can not be negative");
 		}
-		if (this.balance - amount >= 0) {
+		if (this.balance - amount >= 0)
 			this.balance -= amount;
-		} else {
+		else
 			throw new NoEnoughFundsException(amount);
-		}
 
 	}
 

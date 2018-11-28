@@ -1,20 +1,34 @@
 package com.luxoft.domain.account;
 
-import com.luxoft.exceptions.NoEnoughFundsException;
-
 public interface Account {
 
-	void deposit(double amount) throws IllegalArgumentException;
+  void deposit(double amount);
 
-	void withdraw(double amount) throws NoEnoughFundsException;
+  void withdraw(double amount);
 
-	int getAccountNumber();
+  int getAccountNumber();
 
-	AccountType getAccountType();
-	
-	boolean isOpened();
+  AccountType getAccountType();
 
-	double getBalance();
+  boolean isOpened();
 
-	long decimalValue();
+  double getBalance();
+
+  long decimalValue();
+
+  default int m1() {
+    int x;
+    x = 5;
+    //...
+    return 0;
+  }
+
+  private int _m2() {
+    int x;
+    x = 5;
+    //...
+    return 0;
+  }
+
+
 }

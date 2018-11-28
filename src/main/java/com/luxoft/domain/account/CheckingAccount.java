@@ -2,19 +2,25 @@ package com.luxoft.domain.account;
 
 import com.luxoft.exceptions.NoEnoughFundsException;
 import com.luxoft.exceptions.OverDraftLimitExceededException;
-import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
+import lombok.SneakyThrows;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import static com.luxoft.domain.account.AccountState.OPENED;
 import static com.luxoft.domain.account.AccountType.CHECKING;
 import static lombok.AccessLevel.PRIVATE;
 
+//@Builder
+@ToString
 @FieldDefaults(level = PRIVATE)
 public class CheckingAccount extends AbstractAccount {
 
   @Getter
-  double overdraft;
+//  @Default
+  double overdraft = 10_000;
 
   public CheckingAccount(int id, double amount, double overdraft) {
     super(id, amount, OPENED);
@@ -22,7 +28,8 @@ public class CheckingAccount extends AbstractAccount {
   }
 
   @Override
-  public void withdraw(double amount) throws NoEnoughFundsException {
+  @SneakyThrows
+  public void withdraw(double amount) {
 
     if (amount < 0)
       throw new IllegalArgumentException("Amount can not be negative");

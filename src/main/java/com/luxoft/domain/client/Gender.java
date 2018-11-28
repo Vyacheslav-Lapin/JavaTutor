@@ -1,15 +1,17 @@
 package com.luxoft.domain.client;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@AllArgsConstructor
+@FieldDefaults(level = PRIVATE)
 public enum Gender {
-	MALE("Mr."), FEMALE("Ms.");
+  MALE("Mr."),
+  FEMALE("Ms.");
 
-	private String salut;
-
-	private Gender(final String salut) {
-		this.salut = salut;
-	}
-
-	public String getSalutation() {
-		return salut;
-	}
+  String salutation;
 }
