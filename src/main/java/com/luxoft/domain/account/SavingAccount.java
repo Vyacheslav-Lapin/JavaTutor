@@ -2,6 +2,8 @@ package com.luxoft.domain.account;
 
 import com.luxoft.exceptions.NoEnoughFundsException;
 
+import static com.luxoft.domain.account.AccountType.SAVING;
+
 public class SavingAccount extends AbstractAccount {
 
 	public SavingAccount(final int id, final double amount) {
@@ -30,7 +32,7 @@ public class SavingAccount extends AbstractAccount {
 	}
 
 	public AccountType getAccountType() {
-		return AccountType.SAVING;
+		return SAVING;
 	}
 
 	//TODO: implement toString method which details this account information

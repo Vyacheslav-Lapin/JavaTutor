@@ -14,6 +14,7 @@ public abstract class AbstractAccount implements Account {
 
   int accountNumber;
   double balance;
+
   @Setter
   AccountState state;
 

@@ -31,6 +31,7 @@
     <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
     <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
     <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+    <lombok-maven-plugin.version>1.18.4.0</lombok-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -227,24 +228,24 @@
 
         <!-- SUREFIRE (compatible with JUnit 5+, Java 9+, Lombok) -->
         <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire-plugin.version}</version>
-            <configuration>
-                <argLine>--add-modules java.se.ee</argLine>
-                <includes>
-                    <include>**/Test*.java</include>
-                    <include>**/*Test.java</include>
-                    <include>**/*Tests.java</include>
-                    <include>**/*TestCase.java</include>
-                </includes>
-                <properties>
-                    <!--<includeTags>fast</includeTags>-->
-                    <excludeTags>slow</excludeTags>
-                    <!--<configurationParameters>-->
-                        <!--junit.jupiter.conditions.deactivate = *-->
-                    <!--</configurationParameters>-->
-                </properties>
-            </configuration>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <argLine>--add-modules java.se.ee</argLine>
+            <includes>
+              <include>**/Test*.java</include>
+              <include>**/*Test.java</include>
+              <include>**/*Tests.java</include>
+              <include>**/*TestCase.java</include>
+            </includes>
+            <properties>
+              <!--<includeTags>fast</includeTags>-->
+              <excludeTags>slow</excludeTags>
+              <!--<configurationParameters>-->
+              <!--junit.jupiter.conditions.deactivate = *-->
+              <!--</configurationParameters>-->
+            </properties>
+          </configuration>
         </plugin>
 
         <!-- Minimum maven version -->
@@ -269,6 +270,36 @@
           </executions>
         </plugin>
 
+        <!-- LOMBOK -->
+        <plugin>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-maven-plugin</artifactId>
+          <version>${lombok-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>delombok</goal>
+              </goals>
+              <configuration>
+                <addOutputDirectory>false</addOutputDirectory>
+                <sourceDirectory>./src/main/java</sourceDirectory>
+              </configuration>
+            </execution>
+            <execution>
+              <id>test-delombok</id>
+              <phase>generate-test-sources</phase>
+              <goals>
+                <goal>testDelombok</goal>
+              </goals>
+              <configuration>
+                <addOutputDirectory>false</addOutputDirectory>
+                <sourceDirectory>./src/test/java</sourceDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
@@ -280,6 +311,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
       </plugin>
     </plugins>
 

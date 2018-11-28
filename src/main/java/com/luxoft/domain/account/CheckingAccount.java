@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import static com.luxoft.domain.account.AccountState.OPENED;
+import static com.luxoft.domain.account.AccountType.CHECKING;
 import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE)
@@ -15,12 +17,13 @@ public class CheckingAccount extends AbstractAccount {
   double overdraft;
 
   public CheckingAccount(int id, double amount, double overdraft) {
-    super(id, amount, AccountState.OPENED);
+    super(id, amount, OPENED);
     this.overdraft = overdraft;
   }
 
   @Override
-  public void withdraw(final double amount) throws NoEnoughFundsException {
+  public void withdraw(double amount) throws NoEnoughFundsException {
+
     if (amount < 0)
       throw new IllegalArgumentException("Amount can not be negative");
 
@@ -52,7 +55,7 @@ public class CheckingAccount extends AbstractAccount {
   }
 
   @Override
-  public void deposit(final double amount) {
+  public void deposit(double amount) {
     if (amount > 0)
       this.balance += amount;
     else
@@ -63,6 +66,6 @@ public class CheckingAccount extends AbstractAccount {
 
   @Override
   public AccountType getAccountType() {
-    return AccountType.CHECKING;
+    return CHECKING;
   }
 }
