@@ -1,5 +1,8 @@
 package com.luxoft.domain.account;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 public interface Account {
 
   void deposit(double amount);
@@ -23,6 +26,7 @@ public interface Account {
     return 0;
   }
 
+  @Contract(pure = true)
   private int _m2() {
     int x;
     x = 5;

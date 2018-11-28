@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import org.jetbrains.annotations.NotNull;
 
 import static com.luxoft.domain.account.AccountState.OPENED;
 import static com.luxoft.domain.account.AccountType.CHECKING;
@@ -71,6 +72,7 @@ public class CheckingAccount extends AbstractAccount {
 
   //TODO: implement toString method which details this account information
 
+  @NotNull
   @Override
   public AccountType getAccountType() {
     return CHECKING;
