@@ -15,7 +15,7 @@
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- libs -->
-    <lombok.version>1.18.2</lombok.version>
+    <lombok.version>1.18.4</lombok.version>
     <checker.version>2.5.7</checker.version>
     <annotations.version>16.0.3</annotations.version>
     <junit-jupiter.version>5.3.2</junit-jupiter.version>
@@ -24,11 +24,13 @@
     <mockito-all.version>2.0.2-beta</mockito-all.version>
     <log4j-slf4j-impl.version>2.11.1</log4j-slf4j-impl.version>
     <vavr.version>0.9.2</vavr.version>
+    <h2.version>1.4.197</h2.version>
 
     <!-- Plugins-->
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
-    <h2.version>1.4.197</h2.version>
+    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -51,24 +53,24 @@
 
       <!-- CODE GENERATION (Lombok & CheckerFramework) -->
       <dependency>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-          <version>${lombok.version}</version>
-          <scope>provided</scope>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-          <version>${checker.version}</version>
-          <scope>provided</scope>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker</artifactId>
+        <version>${checker.version}</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>org.jetbrains</groupId>
-          <artifactId>annotations</artifactId>
-          <version>${annotations.version}</version>
-          <scope>provided</scope>
+        <groupId>org.jetbrains</groupId>
+        <artifactId>annotations</artifactId>
+        <version>${annotations.version}</version>
+        <scope>provided</scope>
       </dependency>
-      
+
 
       <!-- TEST (JUnit 5 & Mockito) -->
       <dependency>
@@ -139,16 +141,16 @@
 
     <!-- CODE GENERATION (Lombok & CheckerFramework) -->
     <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
-        <groupId>org.checkerframework</groupId>
-        <artifactId>checker</artifactId>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker</artifactId>
     </dependency>
     <dependency>
-        <groupId>org.jetbrains</groupId>
-        <artifactId>annotations</artifactId>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
     </dependency>
 
     <!-- TEST (JUnit 5 & Mockito) -->
@@ -180,48 +182,106 @@
   </dependencies>
 
   <build>
-    <plugins>
-      <!--pc, ps-->
 
-      <!-- COMPILER (Java10+ and lombok compatible) -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven-compiler-plugin.version}</version>
-        <configuration>
-          <compilerArgs>
-            <arg>-parameters</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
+    <pluginManagement>
+      <plugins>
 
-      <!-- JAR with dependencies -->
-      <plugin>
+        <!-- COMPILER (Java10+ and lombok compatible) -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <compilerArgs>
+              <arg>-parameters</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+
+        <!-- JAR with dependencies -->
+        <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${maven-assembly-plugin.version}</version>
           <configuration>
-              <archive>
-                  <manifest>
-                      <mainClass>com.luxoft.training.java2.anonims.AnonimExample</mainClass>
-                  </manifest>
-              </archive>
-              <descriptorRefs>
-                  <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
+            <archive>
+              <manifest>
+                <mainClass>com.luxoft.training.java2.anonims.AnonimExample
+                </mainClass>
+              </manifest>
+            </archive>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
           </configuration>
           <executions>
-              <execution>
-                  <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                  <phase>package</phase> <!-- bind to the packaging phase -->
-                  <goals>
-                      <goal>single</goal>
-                  </goals>
-              </execution>
+            <execution>
+              <id>make-assembly
+              </id> <!-- this is used for inheritance merges -->
+              <phase>package</phase> <!-- bind to the packaging phase -->
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
           </executions>
+        </plugin>
+
+        <!-- SUREFIRE (compatible with JUnit 5+, Java 9+, Lombok) -->
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <configuration>
+                <argLine>--add-modules java.se.ee</argLine>
+                <includes>
+                    <include>**/Test*.java</include>
+                    <include>**/*Test.java</include>
+                    <include>**/*Tests.java</include>
+                    <include>**/*TestCase.java</include>
+                </includes>
+                <properties>
+                    <!--<includeTags>fast</includeTags>-->
+                    <excludeTags>slow</excludeTags>
+                    <!--<configurationParameters>-->
+                        <!--junit.jupiter.conditions.deactivate = *-->
+                    <!--</configurationParameters>-->
+                </properties>
+            </configuration>
+        </plugin>
+
+        <!-- Minimum maven version -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>enforce-maven</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireMavenVersion>
+                    <version>3.6.0</version>
+                  </requireMavenVersion>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven-assembly-plugin.version}</version>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
     </plugins>
-  </build>
 
-  <!--mvnw-->
+  </build>
 </project>

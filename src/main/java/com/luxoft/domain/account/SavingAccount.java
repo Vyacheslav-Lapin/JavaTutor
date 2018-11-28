@@ -5,7 +5,7 @@ import com.luxoft.exceptions.NoEnoughFundsException;
 public class SavingAccount extends AbstractAccount {
 
 	public SavingAccount(final int id, final double amount) {
-		super(id, amount);
+		super(id, amount, AccountState.OPENED);
 	}
 
 	@Override

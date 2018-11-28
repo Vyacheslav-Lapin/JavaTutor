@@ -73,9 +73,8 @@ public class ReflectionTutor {
 				if (method.getDeclaringClass()==cls) {
 					log(method.getName()+"method: "+method.toGenericString());
 					Annotation[] annotations = method.getAnnotations();
-					for (Annotation annotation: annotations) {
-						log("uses annotation: "+annotation.annotationType().getName());
-					}
+					for (Annotation annotation: annotations)
+						log("uses annotation: " + annotation.annotationType().getName());
 				}
 			}
 			

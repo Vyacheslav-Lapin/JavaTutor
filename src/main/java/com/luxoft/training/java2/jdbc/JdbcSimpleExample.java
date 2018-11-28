@@ -40,8 +40,8 @@ public class JdbcSimpleExample {
     @Cleanup val resultSet = statement.executeQuery(GET_STUDENTS_SQL);
     while (resultSet.next())
       System.out.println(new Student(
-          resultSet.getLong(Student.FIELD_ID),
-          resultSet.getString(Student.FIELD_NAME),
-          resultSet.getInt(Student.FIELD_GROUP_ID)));
+          resultSet.getLong(Student.Fields.id),
+          resultSet.getString(Student.Fields.name),
+          resultSet.getInt(Student.Fields.groupId)));
   }
 }

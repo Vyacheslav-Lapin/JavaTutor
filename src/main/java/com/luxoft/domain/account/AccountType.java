@@ -1,15 +1,17 @@
 package com.luxoft.domain.account;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@AllArgsConstructor
+@FieldDefaults(level = PRIVATE)
 public enum AccountType {
-	SAVING("saving"), CHECKING("checking");
+  SAVING("saving"),
+  CHECKING("checking");
 
-	private String type;
-
-	AccountType(String type) {
-		this.type = type;
-	}
-
-	public String getType() {
-		return type;
-	}
+  String type;
 }
