@@ -1,7 +1,6 @@
 package com.luxoft.training.java2.functional;
 
 import io.vavr.CheckedConsumer;
-import io.vavr.CheckedFunction0;
 import io.vavr.CheckedFunction1;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
