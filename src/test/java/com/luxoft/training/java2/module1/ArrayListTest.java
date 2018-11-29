@@ -1,6 +1,5 @@
 package com.luxoft.training.java2.module1;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ArrayListTest { //for com.luxoft.training.java2.module1.ArrayList
@@ -11,26 +10,27 @@ class ArrayListTest { //for com.luxoft.training.java2.module1.ArrayList
   void testAnimals() {
 
     // given
-    arrayList.addAnimal("Лошадь");
-    arrayList.addAnimal("Носорог");
-    arrayList.addAnimal("Собака");
-    arrayList.addAnimal("Змея");
-    arrayList.addAnimal("Обезьяна");
-    arrayList.addAnimal("Индюк");
-    arrayList.addAnimal("Косуля");
-    arrayList.addAnimal("Лев");
-    arrayList.addAnimal("Тигр");
-    arrayList.addAnimal("Кошка");
-    arrayList.addAnimal("Черепаха");
+    arrayList.add("Лошадь");
+    arrayList.add("Носорог");
+    arrayList.add("Собака");
+    arrayList.add("Змея");
+    arrayList.add("Обезьяна");
+    arrayList.add("Индюк");
+    arrayList.add("Косуля");
+    arrayList.add("Лев");
+    arrayList.add("Тигр");
+    arrayList.add("Кошка");
+    arrayList.add("Черепаха");
 
     // when
-    arrayList.insertAnimal(1, "Человек");
+    arrayList.insert(1, "Человек");
 
     // then
 //    Assertions.assertThat(arrayList.animals.length % 5).isEqualTo(0);
 //    Assertions.assertThat(arrayList.animals[1]).isEqualTo("Человек");
 
-    arrayList.deleteAnimal(2);
-    arrayList.showAnimals();
+    arrayList.delete(2);
+
+    arrayList.showElements();
   }
 }

@@ -15,16 +15,16 @@
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- libs -->
+    <log4j-slf4j-impl.version>2.11.1</log4j-slf4j-impl.version>
     <lombok.version>1.18.4</lombok.version>
     <checker.version>2.5.7</checker.version>
     <annotations.version>16.0.3</annotations.version>
+    <vavr.version>0.9.2</vavr.version>
+    <h2.version>1.4.197</h2.version>
     <junit-jupiter.version>5.3.2</junit-jupiter.version>
     <assertj-core.version>3.11.1</assertj-core.version>
     <java-hamcrest.version>2.0.0.0</java-hamcrest.version>
     <mockito-all.version>2.0.2-beta</mockito-all.version>
-    <log4j-slf4j-impl.version>2.11.1</log4j-slf4j-impl.version>
-    <vavr.version>0.9.2</vavr.version>
-    <h2.version>1.4.197</h2.version>
 
     <!-- Plugins-->
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
@@ -71,7 +71,6 @@
         <version>${annotations.version}</version>
         <scope>provided</scope>
       </dependency>
-
 
       <!-- TEST (JUnit 5 & Mockito) -->
       <dependency>
@@ -140,6 +139,7 @@
       <artifactId>h2</artifactId>
     </dependency>
 
+
     <!-- CODE GENERATION (Lombok & CheckerFramework) -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -184,6 +184,8 @@
 
   <build>
 
+    <sourceDirectory>${project.build.directory}/generated-sources/delombok</sourceDirectory>
+
     <pluginManagement>
       <plugins>
 
@@ -199,7 +201,7 @@
           </configuration>
         </plugin>
 
-        <!-- JAR with dependencies -->
+        <!-- JAR withRunnable dependencies -->
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${maven-assembly-plugin.version}</version>
@@ -226,12 +228,11 @@
           </executions>
         </plugin>
 
-        <!-- SUREFIRE (compatible with JUnit 5+, Java 9+, Lombok) -->
+        <!-- SUREFIRE (compatible withRunnable JUnit 5+, Java 9+, Lombok) -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>
           <configuration>
-            <argLine>--add-modules java.se.ee</argLine>
             <includes>
               <include>**/Test*.java</include>
               <include>**/*Test.java</include>
@@ -270,34 +271,34 @@
           </executions>
         </plugin>
 
-        <!-- LOMBOK -->
+        <!-- Lombok -->
         <plugin>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok-maven-plugin</artifactId>
-          <version>${lombok-maven-plugin.version}</version>
-          <executions>
-            <execution>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>delombok</goal>
-              </goals>
-              <configuration>
-                <addOutputDirectory>false</addOutputDirectory>
-                <sourceDirectory>./src/main/java</sourceDirectory>
-              </configuration>
-            </execution>
-            <execution>
-              <id>test-delombok</id>
-              <phase>generate-test-sources</phase>
-              <goals>
-                <goal>testDelombok</goal>
-              </goals>
-              <configuration>
-                <addOutputDirectory>false</addOutputDirectory>
-                <sourceDirectory>./src/test/java</sourceDirectory>
-              </configuration>
-            </execution>
-          </executions>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven-plugin</artifactId>
+            <version>${lombok-maven-plugin.version}</version>
+            <executions>
+                <execution>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>delombok</goal>
+                    </goals>
+                    <configuration>
+                        <addOutputDirectory>false</addOutputDirectory>
+                        <sourceDirectory>src/main/java</sourceDirectory>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>test-delombok</id>
+                    <phase>generate-test-sources</phase>
+                    <goals>
+                        <goal>testDelombok</goal>
+                    </goals>
+                    <configuration>
+                        <addOutputDirectory>false</addOutputDirectory>
+                        <sourceDirectory>src/test/java</sourceDirectory>
+                    </configuration>
+                </execution>
+            </executions>
         </plugin>
 
       </plugins>

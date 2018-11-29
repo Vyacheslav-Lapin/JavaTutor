@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import static lombok.AccessLevel.PROTECTED;
 
@@ -17,10 +18,6 @@ public abstract class AbstractAccount implements Account {
 
   @Setter
   AccountState state;
-
-  public static int getUniqueAccountNumber() {
-    return (int) System.currentTimeMillis();
-  }
 
   @Override
   public long decimalValue() {

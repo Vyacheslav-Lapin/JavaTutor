@@ -8,19 +8,18 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import static com.luxoft.domain.account.AccountState.OPENED;
 import static com.luxoft.domain.account.AccountType.CHECKING;
 import static lombok.AccessLevel.PRIVATE;
 
-//@Builder
 @ToString
 @FieldDefaults(level = PRIVATE)
 public class CheckingAccount extends AbstractAccount {
 
   @Getter
-//  @Default
   double overdraft = 10_000;
 
   public CheckingAccount(int id, double amount, double overdraft) {
@@ -48,8 +47,7 @@ public class CheckingAccount extends AbstractAccount {
         throw new OverDraftLimitExceededException(overdraftNeeded
             - overdraft);
       } else {
-        // Yes, there is overdraft protection and enough to cover the
-        // amount
+        // Yes, there is overdraft protection and enough to cover the amount
         this.balance = 0.0;
         overdraft -= overdraftNeeded;
       }

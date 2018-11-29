@@ -27,7 +27,7 @@ public interface Account {
   }
 
   @Contract(pure = true)
-  private int _m2() {
+  private int m2() {
     int x;
     x = 5;
     //...

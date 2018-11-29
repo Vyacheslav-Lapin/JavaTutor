@@ -1,33 +1,34 @@
 package com.luxoft.training.java2.module2;
 
-import static lombok.AccessLevel.PRIVATE;
-import static org.junit.Assert.*;
+
+import lombok.experimental.FieldDefaults;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import lombok.experimental.FieldDefaults;
-import org.apache.logging.log4j.core.config.Order;
-import org.junit.jupiter.api.Test;
+import static lombok.AccessLevel.PRIVATE;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @FieldDefaults(level = PRIVATE)
-class FileTutorTest {
+class FileTutorTest { //for com.luxoft.training.java2.module2.FileTutor
 
-	static final String FILE_PATH = "./test/test.txt";
-	FileTutor fileTutor = new FileTutor();
-	
-	@Test
-	void testDeleteFile() {
+  @SuppressWarnings("WeakerAccess")
+  static final String FILE_PATH = "./test/test.txt";
+  FileTutor fileTutor = new FileTutor();
 
-		// given, when
-		File file = fileTutor.createFile(FILE_PATH);
+  @Test
+  void testDeleteFile() {
 
-		assertTrue(file.exists());
+    // given, when
+    File file = fileTutor.createFile(FILE_PATH);
 
-		fileTutor.deleteFile(file);
+    assertTrue(file.exists());
 
-		// then
-		assertFalse(file.exists());
-	}
+    // when
+    fileTutor.deleteFile(file);
 
-
+    // then
+    assertFalse(file.exists());
+  }
 }

@@ -6,7 +6,7 @@ import static com.luxoft.training.Logger.log;
  * Данный класс делает то же, что делает стандартный ArrayList:
  * увеличивает размер массива, когда массив заполнен.
  * <p>
- * Реализуйте метод deleteAnimal(int position)
+ * Реализуйте метод delete(int position)
  */
 class ArrayList<T> {
 
@@ -14,7 +14,7 @@ class ArrayList<T> {
   String[] animals = new String[animalsCapacity];
   private int animalsSize = 0;
 
-  public void addAnimal(String animal) {
+  public void add(String animal) {
     if (animalsSize >= animalsCapacity)
       expandAnimalsArray();
     animals[animalsSize] = animal;
@@ -30,22 +30,22 @@ class ArrayList<T> {
     animals = animals_new;
   }
 
-  public void insertAnimal(int position, String animal) {
+  public void insert(int position, String s) {
     if (position < 0 || position > animalsSize - 1)
       throw new ArrayIndexOutOfBoundsException();
 
     if (position == animalsSize - 1)
-      addAnimal(animal);
+      add(s);
     else {
       if (animalsSize >= animalsCapacity)
         expandAnimalsArray();
       System.arraycopy(animals, position, animals, position + 1, animalsSize - position);
-      animals[position] = animal;
+      animals[position] = s;
       animalsSize++;
     }
   }
 
-  public void deleteAnimal(int position) {
+  public void delete(int position) {
     System.arraycopy(animals,
         position + 1,
         animals,
@@ -55,7 +55,7 @@ class ArrayList<T> {
     animalsSize--;
   }
 
-  public void showAnimals() {
+  public void showElements() {
     for (int i = 0; i < animalsSize; i++) {
       log(i + ") " + animals[i]);
     }

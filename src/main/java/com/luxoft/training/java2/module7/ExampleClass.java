@@ -29,11 +29,11 @@ public class ExampleClass {
 	}
  
 	public void printItString(String temp){
-		System.out.println("printIt() with param String : " + temp);
+		System.out.println("printIt() withRunnable param String : " + temp);
 	}
  
 	public void printItInt(int temp){
-		System.out.println("printIt() with param int : " + temp);
+		System.out.println("printIt() withRunnable param int : " + temp);
 	}
  
 	public void setCounter(int counter){

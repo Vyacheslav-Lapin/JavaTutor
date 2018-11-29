@@ -27,7 +27,7 @@ public class JdbcSimpleExample {
   String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
 
   //language=H2
-  String CREATE_TABLE_SQL = "create table student (id identity, name varchar not null, groupId int)";//language=H2
+  String CREATE_TABLE_SQL = "create table if not exists student (id identity, name varchar not null, groupId int)";//language=H2
   String INSERT_STUDENT_SQL = "insert into student (name, groupId) values ('Вася Пупкин', 123456)";//language=H2
   String GET_STUDENTS_SQL = "select id, name, groupId from student";
 
