@@ -1,5 +1,8 @@
 package com.luxoft.training.java2.functional;
 
+import io.vavr.CheckedConsumer;
+import io.vavr.CheckedFunction0;
+import io.vavr.CheckedFunction1;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -26,18 +29,28 @@ class LineTest { //for com.luxoft.training.java2.functional.Line
     }
   }
 
-//  @NotNull
-//  @SneakyThrows
-//  @Contract(pure = true)
-//  public final void withObjectOutputStrream(@NotNull Consumer<ObjectOutputStream> objectOutputStreamConsumer) {
-//    @Cleanup ObjectOutputStream objectOutputStream =
-//        new ObjectOutputStream(
-//            new FileOutputStream(FILE));
-//
-//    objectOutputStreamConsumer.accept(objectOutputStream);
-//  }
+  @SneakyThrows
+  @Contract(pure = true)
+  final void withObjectOutputStrream(@NotNull CheckedConsumer<ObjectOutputStream> objectOutputStreamCheckedConsumer) {
+    @Cleanup ObjectOutputStream objectOutputStream =
+        new ObjectOutputStream(
+            new FileOutputStream(FILE));
+
+    objectOutputStreamCheckedConsumer.accept(objectOutputStream);
+  }
   
-  
+  @SneakyThrows
+  @Contract(pure = true)
+  final <T> T withObjectInputStrream(@NotNull CheckedFunction1<ObjectInputStream, T> oisCheckedConsumer) {
+    @Cleanup val objectInputStream =
+        new ObjectInputStream(
+            new FileInputStream(FILE));
+
+    return oisCheckedConsumer
+        .apply(objectInputStream);
+  }
+
+
   
   @Test
   @SneakyThrows
@@ -49,16 +62,16 @@ class LineTest { //for com.luxoft.training.java2.functional.Line
         1);
 
     // when
-    val byteArrayOutputStream = new ByteArrayOutputStream();
-    @Cleanup val objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-    objectOutputStream.writeObject(line);
+    withObjectOutputStrream(objectOutputStream ->
+        objectOutputStream.writeObject(line));
 
-    @Cleanup ObjectInputStream objectInputStream = new ObjectInputStream(
-        new ByteArrayInputStream(
-            byteArrayOutputStream.toByteArray()));
+    Object line2 = withObjectInputStrream(
+        ObjectInputStream::readObject
+//        ObjectInputStream.readObject(objectInputStream)
+    );
 
     // then
-    assertThat(((Line) objectInputStream.readObject()).getPoint1().getX())
+    assertThat(((Line) line2).getPoint1().getX())
         .isEqualTo(1);
 
   }
